@@ -1,6 +1,6 @@
 FROM ubuntu as base
 
-RUN apt install --yes tree
+RUN apt-get update && apt-get install -y tree
 
 COPY --link test.txt /tmp/test.txt
 
