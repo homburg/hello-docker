@@ -28,11 +28,15 @@ jobs:
           driver-opts: network=host
           buildkitd-flags: --debug
 
+      - run: docker buildx du
+
       - name: Build and push to local registry
         uses: docker/build-push-action@v4
         with:
           context: .
           cache-from: type=gha
+
+      - run: docker buildx du
 
       - name: Build and push to local registry
         uses: docker/build-push-action@v4
@@ -42,6 +46,8 @@ jobs:
           tags: localhost:5000/name/app:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - run: docker buildx du
 
       - name: Inspect
         run: |
